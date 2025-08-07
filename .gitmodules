@@ -1,0 +1,3 @@
+[submodule "rviz_satellite"]
+	path = rviz_satellite
+	url = https://github.com/nobleo/rviz_satellite
