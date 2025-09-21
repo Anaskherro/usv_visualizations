@@ -45,11 +45,9 @@ usv_visualizations/
 
 These should be installed / set up before using:
 
-- ROS 2 (specify the version: e.g. Humble, Iron, etc.)  
+- ROS 2 (Humble)  
 - `robot_localization` package for ROS 2  
 - RViz2  
-- Dependencies for satellite imagery (e.g. geospatial libraries, image providers)  
-- Python (version), plus any Python packages used in `usviz/scripts`  
 
 ---
 
@@ -63,7 +61,7 @@ Here’s how to get things running:
    git clone https://github.com/Anaskherro/usv_visualizations.git
    ```
 
-2. **Initialize submodules (if any)**
+2. **Initialize submodules**
 
    ```bash
    cd usv_visualizations
@@ -82,36 +80,9 @@ Here’s how to get things running:
    colcon build
    ```
 
-4. **Configure parameters**
-
-   - Edit parameter files for localization, satellite imagery paths, etc.  
-   - Set up RViz configuration files (if included in `rviz_satellite/`)  
-
----
-
 ## Usage
 
-Examples of how to run or test the visualization framework:
-
-- Launch the visualization for robot localization and satellite overlay:
-
-  ```bash
-  ros2 launch usv_visualizations rviz_satellite_launch.launch.py
-  ```
-
-  *(Adjust launch file name/path as needed.)*
-
-- Run helper script:
-
-  ```bash
-  python3 usviz/scripts/some_script.py --arg1 value
-  ```
-
-- Open RViz with the provided configuration:
-
-  ```bash
-  rviz2 -d usv_visualizations/rviz_satellite/config_file.rviz
-  ```
+Run the scripts in `usviz/scripts` in order to visualize the current usv path and odometry, and use the robot package to visualize the usv model in rviz.
 
 ---
 
@@ -140,10 +111,10 @@ Contributions are very welcome! To contribute:
 
 ## License
 
-*(Specify the license here: MIT, GPL, Apache, etc.)*
+MIT Licence.
 
 ---
 
 ## Contact
 
-For questions or support, contact **Your Name** (or the project maintainer) at *email@yourdomain.com*, or open an issue in this repo.
+For questions or support, contact me at *anas.kherro@um6p.ma*, or open an issue in this repo.
