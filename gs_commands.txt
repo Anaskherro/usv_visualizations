@@ -1,0 +1,18 @@
+
+#PI_X264
+
+gst-launch-1.0 -v \
+  v4l2src device=/dev/video0 io-mode=2 ! \
+  image/jpeg,width=1280,height=720,framerate=30/1 ! jpegdec ! videoconvert ! \
+  x264enc tune=zerolatency speed-preset=ultrafast bitrate=2000 key-int-max=30 bframes=0 sliced-threads=true ! \
+  h264parse config-interval=1 ! rtph264pay pt=96 config-interval=1 mtu=1400 ! \
+  udpsink host=<RECEIVER_PC_IP> port=5000
+#FAST_RECIEVER_PC 
+gst-launch-1.0 -v   v4l2src device=/dev/video0 io-mode=2 do-timestamp=true !   video/x-h264,width=1280,height=720,framerate=30/1 !   h264parse config-interval=1 ! rtph264pay pt=96 config-interval=1 mtu=1400 !   multiudpsink clients=10.42.0.1:5000  sync=false async=false
+
+#RECIEVER_PC
+
+gst-launch-1.0 -v \
+  udpsrc port=5000 caps="application/x-rtp, media=video, payload=96, encoding-name=H264, clock-rate=90000" ! \
+  rtpjitterbuffer latency=60 ! \
+  rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
